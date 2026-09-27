@@ -23,39 +23,27 @@ import lombok.AccessLevel;
 @Table(name = "veiculos")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name= "tipo_veiculo")
-
+@Getter
+@Setter
 public abstract class Veiculo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter
 	@Setter(AccessLevel.NONE)
 	private Long id;
 	
 	@Column(nullable = false)
-	@Getter
-	@Setter
 	private Integer ano;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", nullable = false)
-	@Getter
-	@Setter
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	private Cliente cliente;
 	
 	@Column(length = 7, nullable = false)// MERCOSUL Standard length
-	@Getter
-	@Setter
 	private String placa;
 	
 	@Column(name = "tipo_veiculo", nullable = false, insertable = false, updatable = false)
-	@Getter
-	@Setter
 	private TipoVeiculo tipoVeiculo;
-	
-	
-	
-	
 }
